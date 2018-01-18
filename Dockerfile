@@ -31,7 +31,7 @@ RUN apk add --no-cache ca-certificates gnupg openssl && \
 
 # The agent will be started with /consul-template/config as the configuration directory
 # so you can add additional config files in that location.
-RUN mkdir -p /consul-template/config
+RUN mkdir -p /consul-template/config /consul-template/templates
 
 COPY entrypoint.sh /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]

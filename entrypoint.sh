@@ -6,7 +6,28 @@ set -e
 # wouldn't do either of these functions so we'd leak zombies as well as do
 # unclean termination of all our sub-processes.
 
+export CT_TEMPLATE_DIR="${CT_TEMPLATE_DIR:-/consul-template/templates}"
+
+cat <<EOF >${CT_TEMPLATES_DIR}/cert.tpl
+{{ with secret "secret/certs/environment-wildcard" }}{{ .Data.certificate }}{{ end }}
+EOF
+
+cat <<EOF >${CT_TEMPLATES_DIR}/key.tpl
+{{ with secret "secret/certs/environment-wildcard" }}{{ .Data.key }}{{ end }}
+EOF
+
 export CT_CONFIG_DIR="${CT_CONFIG_DIR:-/consul-template/config}"
+
+cat <<EOF >${CT_CONFIG_DIR}/cert.hcl
+template {
+  source      = "${CT_TEMPLATES_DIR}/cert.tpl"
+  destination = "/etc/traefik/cert.pem"
+}
+template {
+  source      = "${CT_TEMPLATES_DIR}/key.tpl"
+  destination = "/etc/traefik/key.pem"
+}
+EOF
 
 # You can also set the CT_LOCAL_CONFIG environment variable to pass some
 # Consul Template configuration JSON without having to bind any volumes.
