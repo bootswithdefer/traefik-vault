@@ -33,7 +33,5 @@ RUN apk add --no-cache ca-certificates gnupg openssl && \
 # so you can add additional config files in that location.
 RUN mkdir -p /consul-template/config
 
-COPY entrypoint.sh /bin/entrypoint.sh
-ENTRYPOINT ["entrypoint.sh"]
-
-CMD ["/traefik"]
+COPY entrypoint.sh /entrypoint.sh
+ENTRYPOINT ["/entrypoint.sh"]
