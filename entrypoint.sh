@@ -8,11 +8,11 @@ set -e
 
 export CT_TEMPLATE_DIR="${CT_TEMPLATE_DIR:-/consul-template/templates}"
 
-cat <<EOF >${CT_TEMPLATES_DIR}/cert.tpl
+cat <<EOF >${CT_TEMPLATE_DIR}/cert.tpl
 {{ with secret "secret/certs/environment-wildcard" }}{{ .Data.certificate }}{{ end }}
 EOF
 
-cat <<EOF >${CT_TEMPLATES_DIR}/key.tpl
+cat <<EOF >${CT_TEMPLATE_DIR}/key.tpl
 {{ with secret "secret/certs/environment-wildcard" }}{{ .Data.key }}{{ end }}
 EOF
 
@@ -20,11 +20,11 @@ export CT_CONFIG_DIR="${CT_CONFIG_DIR:-/consul-template/config}"
 
 cat <<EOF >${CT_CONFIG_DIR}/cert.hcl
 template {
-  source      = "${CT_TEMPLATES_DIR}/cert.tpl"
+  source      = "${CT_TEMPLATE_DIR}/cert.tpl"
   destination = "/etc/traefik/cert.pem"
 }
 template {
-  source      = "${CT_TEMPLATES_DIR}/key.tpl"
+  source      = "${CT_TEMPLATE_DIR}/key.tpl"
   destination = "/etc/traefik/key.pem"
 }
 EOF
