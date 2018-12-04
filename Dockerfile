@@ -1,9 +1,9 @@
-FROM traefik:1.4-alpine
+FROM traefik:1.7-alpine
 
 MAINTAINER Jesse DeFer <traefik-vault@dotd.com>
 
 ENV DOCKER_BASE_VERSION=0.0.4
-ENV CONSUL_TEMPLATE_VERSION=0.19.4
+ENV CONSUL_TEMPLATE_VERSION=0.19.5
 
 ENV HASHICORP_RELEASES=https://releases.hashicorp.com
 
