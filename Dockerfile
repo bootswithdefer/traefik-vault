@@ -35,3 +35,4 @@ RUN mkdir -p /consul-template/config /consul-template/templates
 
 COPY entrypoint.sh /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]
+CMD ["traefik"]
