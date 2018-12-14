@@ -36,7 +36,7 @@ if [ -n "$CT_LOCAL_CONFIG" ]; then
 fi
 
 if [ -n "$(find "$CT_CONFIG_DIR" -mindepth 1 -maxdepth 1 -type f 2>/dev/null)" ]; then
-  /bin/consul-template -consul-addr="$CONSUL_HOST" -consul-ssl -vault-addr="$VAULT_ADDR" -vault-ssl -vault-renew-token="false" -config="$CT_CONFIG_DIR" -once
+  /bin/consul-template -consul-addr="$CONSUL_ADDR" -consul-ssl -vault-addr="$VAULT_ADDR" -vault-ssl -vault-renew-token="false" -config="$CT_CONFIG_DIR" -once
 else
   echo "the directory [$CT_CONFIG_DIR] is empty or non-existent; skipping consul-template configuration"
 fi
