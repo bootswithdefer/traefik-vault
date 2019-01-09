@@ -21,11 +21,11 @@ export CT_CONFIG_DIR="${CT_CONFIG_DIR:-/consul-template/config}"
 cat <<EOF >${CT_CONFIG_DIR}/cert.hcl
 template {
   source      = "${CT_TEMPLATE_DIR}/cert.tpl"
-  destination = "/etc/traefik/cert.pem"
+  destination = "/etc/ssl/server.pem"
 }
 template {
   source      = "${CT_TEMPLATE_DIR}/key.tpl"
-  destination = "/etc/traefik/key.pem"
+  destination = "/etc/ssl/private/server.key"
 }
 EOF
 
