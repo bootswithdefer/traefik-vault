@@ -26,7 +26,7 @@ RUN apk add --no-cache ca-certificates gnupg openssl && \
     unzip -d /bin consul-template_${CONSUL_TEMPLATE_VERSION}_linux_amd64.zip && \
     cd /tmp && \
     rm -rf /tmp/build && \
-    apk del gnupg && \
+    apk del gnupg openssl && \
     rm -rf /root/.gnupg
 
 # The agent will be started with /consul-template/config as the configuration directory
